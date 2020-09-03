@@ -1,15 +1,15 @@
 import sys
 import pygame
 
+from settings import Settings
+
 
 def run_game():
     # Инициализируем игру и создаем объект экрана
     pygame.init()
-    screen = pygame.display.set_mode((1200, 800))
+    sb_settings = Settings()
+    screen = pygame.display.set_mode((sb_settings.screen_width, sb_settings.screen_heigth))
     pygame.display.set_caption("Sniper box")
-
-    # Назначение цвета фона
-    bg_color = (230,230, 230)
 
     # Запуск основного цикла игры
     while True:
@@ -19,7 +19,7 @@ def run_game():
                 sys.exit()
 
         # При каждом проходе цикла перерисовывается экран
-        screen.fill(bg_color)
+        screen.fill(sb_settings.bg_color)
 
         # Отображение последнего прорисованного экрана.
         pygame.display.flip()
