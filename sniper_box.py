@@ -2,6 +2,7 @@ import sys
 import pygame
 
 from settings import Settings
+from ship import Ship
 
 
 def run_game():
@@ -10,6 +11,9 @@ def run_game():
     sb_settings = Settings()
     screen = pygame.display.set_mode((sb_settings.screen_width, sb_settings.screen_heigth))
     pygame.display.set_caption("Sniper box")
+
+    # Создаем корабль
+    ship = Ship(screen)
 
     # Запуск основного цикла игры
     while True:
@@ -20,6 +24,7 @@ def run_game():
 
         # При каждом проходе цикла перерисовывается экран
         screen.fill(sb_settings.bg_color)
+        ship.blitme()
 
         # Отображение последнего прорисованного экрана.
         pygame.display.flip()
