@@ -8,6 +8,9 @@ def run_game():
     screen = pygame.display.set_mode((1200, 800))
     pygame.display.set_caption("Sniper box")
 
+    # Назначение цвета фона
+    bg_color = (230,230, 230)
+
     # Запуск основного цикла игры
     while True:
         # Отслеживания событий клавиатуры и мыши.
@@ -15,7 +18,11 @@ def run_game():
             if event.type == pygame.QUIT:
                 sys.exit()
 
+        # При каждом проходе цикла перерисовывается экран
+        screen.fill(bg_color)
+
         # Отображение последнего прорисованного экрана.
         pygame.display.flip()
+
 
 run_game()
