@@ -20,8 +20,8 @@ def run_game():
     # Запуск основного цикла игры
     while True:
         # Отслеживания событий клавиатуры и мыши.
-        gf.check_events()
-
+        gf.check_events(ship)
+        ship.update()
         # При каждом проходе цикла перерисовывается экран
         gf.update_screen(sb_settings, screen, ship)
 

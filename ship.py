@@ -13,6 +13,16 @@ class Ship():
         # Каждый новый корабль появляется у левого края экрана
         self.rect.centery = self.screen_rect.centery
         self.rect.left = self.screen_rect.left
+        # Флаг перемещения
+        self.moving_up = False
+        self.moving_down = False
+
+    def update(self):
+        """Обновляет позицию корабля."""
+        if self.moving_up:
+            self.rect.centery -= 1
+        if self.moving_down:
+            self.rect.centery += 1
 
     def blitme(self):
         """Рисует корабль в текущей позиции."""
