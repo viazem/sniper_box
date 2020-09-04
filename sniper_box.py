@@ -4,6 +4,8 @@ import pygame
 from settings import Settings
 from ship import Ship
 
+import game_functions as gf
+
 
 def run_game():
     # Инициализируем игру и создаем объект экрана
@@ -18,16 +20,10 @@ def run_game():
     # Запуск основного цикла игры
     while True:
         # Отслеживания событий клавиатуры и мыши.
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        gf.check_events()
 
         # При каждом проходе цикла перерисовывается экран
-        screen.fill(sb_settings.bg_color)
-        ship.blitme()
-
-        # Отображение последнего прорисованного экрана.
-        pygame.display.flip()
+        gf.update_screen(sb_settings, screen, ship)
 
 
 run_game()
