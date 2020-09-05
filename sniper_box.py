@@ -20,13 +20,10 @@ def run_game():
     ship = Ship(sb_settings, screen)
     # Создаем группы для хранения пуль
     bullets = Group()
-    #boxes = Group()
+    boxes = Group()
 
     # Создаём группу для коробочек
-    #gf.create_fleet(sb_settings, screen, boxes)
-
-    # Создаем коробочку
-    box = Box(sb_settings, screen)
+    gf.create_fleet(sb_settings, screen, boxes)
 
     # Запуск основного цикла игры
     while True:
@@ -36,7 +33,7 @@ def run_game():
         gf.update_bullets(sb_settings, bullets)
 
         # При каждом проходе цикла перерисовывается экран
-        gf.update_screen(sb_settings, screen, ship, box, bullets)
+        gf.update_screen(sb_settings, screen, ship, boxes, bullets)
 
 
 run_game()

@@ -2,7 +2,7 @@ import sys
 import pygame
 
 from bullet import Bullet
-
+from box import Box
 
 def check_keydown_events(event, sb_settings, screen, ship, bullets):
     """Реагирует на нажатие клавиши."""
@@ -43,7 +43,7 @@ def check_events(sb_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(sb_settings, screen, ship, box, bullets):
+def update_screen(sb_settings, screen, ship, boxes, bullets):
     """Обновляет изображения на экране и отображает новый экран."""
     # При каждом проходе цикла перерисовывается экран.
     screen.fill(sb_settings.bg_color)
@@ -51,7 +51,7 @@ def update_screen(sb_settings, screen, ship, box, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
-    box.blitme()
+    boxes.draw(screen)
 
     # Отображение последнего прорисованного экрана.
     pygame.display.flip()
@@ -67,3 +67,14 @@ def update_bullets(sb_settings, bullets):
         if bullet.rect.right >= sb_settings.screen_width:
             bullets.remove(bullet)
         # print(len(bullets))
+
+
+def create_box(sb_settings, screen, boxes):
+    """Создает коробочку"""
+    box = Box(sb_settings, screen)
+    boxes.add(box)
+
+
+def create_fleet(sb_settings, screen, boxes):
+    """"Создаем группу коробочек"""
+    create_box(sb_settings, screen, boxes)
