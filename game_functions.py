@@ -78,3 +78,25 @@ def create_box(sb_settings, screen, boxes):
 def create_fleet(sb_settings, screen, boxes):
     """"Создаем группу коробочек"""
     create_box(sb_settings, screen, boxes)
+
+
+def check_fleet_edges(sb_settings, boxes):
+    """Реагирует достижение коробочки края экрана."""
+    for box in boxes.sprites():
+        if box.check_edges():
+            change_fleet_direction(sb_settings, boxes)
+            break
+
+
+def change_fleet_direction(sb_settings, boxes):
+    """Меняет направление движения"""
+    sb_settings.fleet_direction *= -1
+
+
+def update_boxes(sb_settings, boxes):
+    """
+    Проверяет, достигла коробочка края экрана.
+    Обновляет позиции всех коробочек.
+    """
+    check_fleet_edges(sb_settings, boxes)
+    boxes.update()

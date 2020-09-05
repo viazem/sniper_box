@@ -31,6 +31,7 @@ def run_game():
         gf.check_events(sb_settings, screen, ship, bullets)
         ship.update()
         gf.update_bullets(sb_settings, bullets)
+        gf.update_boxes(sb_settings, boxes)
 
         # При каждом проходе цикла перерисовывается экран
         gf.update_screen(sb_settings, screen, ship, boxes, bullets)

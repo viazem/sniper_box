@@ -23,6 +23,19 @@ class Box(Sprite):
         # Сохранение точной позиции пришельца.
         self.y = float(self.rect.y)
 
+    def check_edges(self):
+        """Возвращает True если коробочка у края экрана."""
+        screen_rect = self.screen.get_rect()
+        if self.rect.top <= 0:
+            return True
+        elif self.rect.bottom >= screen_rect.bottom:
+            return True
+
+    def update(self):
+        """Перемещает коробочку вверх или вниз."""
+        self.y -= (self.sb_settings.box_speed_factor * self.sb_settings.fleet_direction)
+        self.rect.y = self.y
+
     def blitme(self):
         """Выводит коробочку в текущем положении"""
         self.screen.blit(self.image, self.rect)
