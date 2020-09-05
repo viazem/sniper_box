@@ -2,6 +2,22 @@ import sys
 import pygame
 
 
+def check_keydown_events(event, ship):
+    """Реагирует на нажатие клавиши."""
+    if event.key == pygame.K_UP:
+        ship.moving_up = True
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = True
+
+
+def check_keyup_events(event, ship):
+    """Реагирует на отпускание клавиши."""
+    if event.key == pygame.K_UP:
+        ship.moving_up = False
+    elif event.key == pygame.K_DOWN:
+        ship.moving_down = False
+
+
 def check_events(ship):
     """Обрабатывает нажатия клавиш и события мыши."""
 
@@ -9,15 +25,9 @@ def check_events(ship):
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP:
-                ship.moving_up = True
-            elif event.key == pygame.K_DOWN:
-                ship.moving_down = True
+            check_keydown_events(event, ship)
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_UP:
-                ship.moving_up = False
-            elif event.key == pygame.K_DOWN:
-                ship.moving_down = False
+            check_keyup_events(event, ship)
 
 
 def update_screen(sb_settings, screen, ship):

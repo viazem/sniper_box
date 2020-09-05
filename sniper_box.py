@@ -15,7 +15,7 @@ def run_game():
     pygame.display.set_caption("Sniper box")
 
     # Создаем корабль
-    ship = Ship(screen)
+    ship = Ship(sb_settings, screen)
 
     # Запуск основного цикла игры
     while True:
