@@ -12,6 +12,8 @@ def check_keydown_events(event, sb_settings, screen, ship, bullets):
         ship.moving_down = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(sb_settings, screen, ship, bullets)
+    if event.key == pygame.K_q:
+        sys.exit()
 
 
 def fire_bullet(sb_settings, screen, ship, bullets):
@@ -41,7 +43,7 @@ def check_events(sb_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(sb_settings, screen, ship, bullets):
+def update_screen(sb_settings, screen, ship, box, bullets):
     """Обновляет изображения на экране и отображает новый экран."""
     # При каждом проходе цикла перерисовывается экран.
     screen.fill(sb_settings.bg_color)
@@ -49,6 +51,7 @@ def update_screen(sb_settings, screen, ship, bullets):
     for bullet in bullets.sprites():
         bullet.draw_bullet()
     ship.blitme()
+    box.blitme()
 
     # Отображение последнего прорисованного экрана.
     pygame.display.flip()
