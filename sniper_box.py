@@ -30,7 +30,7 @@ def run_game():
         # Отслеживания событий клавиатуры и мыши.
         gf.check_events(sb_settings, screen, ship, bullets)
         ship.update()
-        gf.update_bullets(sb_settings, bullets)
+        gf.update_bullets(sb_settings, boxes, bullets)
         gf.update_boxes(sb_settings, boxes)
 
         # При каждом проходе цикла перерисовывается экран

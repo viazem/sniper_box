@@ -57,7 +57,7 @@ def update_screen(sb_settings, screen, ship, boxes, bullets):
     pygame.display.flip()
 
 
-def update_bullets(sb_settings, bullets):
+def update_bullets(sb_settings, boxes, bullets):
     """Обновляет позиции пуль и уничтожает старые пули."""
     # Обновление позиции пуль
     bullets.update()
@@ -67,6 +67,10 @@ def update_bullets(sb_settings, bullets):
         if bullet.rect.right >= sb_settings.screen_width:
             bullets.remove(bullet)
         # print(len(bullets))
+
+    # Проверка попаданий в пришельцев.
+    # При обнаружении попаданийя удалить пулю и пришельца.
+    collisions = pygame.sprite.groupcollide(bullets, boxes, True, True)
 
 
 def create_box(sb_settings, screen, boxes):
