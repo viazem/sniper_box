@@ -3,6 +3,8 @@ import pygame
 
 from bullet import Bullet
 from box import Box
+from time import sleep
+
 
 def check_keydown_events(event, sb_settings, screen, ship, bullets):
     """Реагирует на нажатие клавиши."""
@@ -57,7 +59,7 @@ def update_screen(sb_settings, screen, ship, boxes, bullets):
     pygame.display.flip()
 
 
-def update_bullets(sb_settings, screen, ship, boxes, bullets):
+def update_bullets(sb_settings, stats, screen, ship, boxes, bullets):
     """Обновляет позиции пуль и уничтожает старые пули."""
     # Обновление позиции пуль
     bullets.update()
@@ -66,16 +68,24 @@ def update_bullets(sb_settings, screen, ship, boxes, bullets):
     for bullet in bullets.copy():
         if bullet.rect.right >= sb_settings.screen_width:
             bullets.remove(bullet)
-        # print(len(bullets))
+    check_bullets_boxes_collisions(sb_settings, stats, screen, ship, boxes, bullets)
 
+
+def check_bullets_boxes_collisions(sb_settings, stats, screen, ship, boxes, bullets):
+    """Обработка коллизий пуль с коробочкой."""
     # Проверка попаданий в пришельцев.
     # При обнаружении попаданийя удалить пулю и пришельца.
     collisions = pygame.sprite.groupcollide(bullets, boxes, True, True)
 
     if len(boxes) == 0:
-        # Уничтожение существующих пуль и создание нового флота.
+        stats.box_left -= 1
+        # Уничтожение существующих пуль и создание новой коробочки.
         bullets.empty()
         create_fleet(sb_settings, screen, boxes)
+        ship.center_ship()
+        sleep(0.5)
+    else:
+        stats.game_active = False
 
 
 def create_box(sb_settings, screen, boxes):
